@@ -1,7 +1,3 @@
-Certainly! Here's a suitable `README.md` file for your assignment:
-
----
-
 # PyTorch Docker Assignment
 
 Welcome to the PyTorch Docker Assignment! This project will guide you through creating a Docker container for a PyTorch environment, training a model on the MNIST dataset, and managing model checkpoints.
@@ -77,14 +73,6 @@ To build and run the Docker container:
     docker run -v $(pwd)/model_checkpoints:/app/model_checkpoints pytorch-docker-assignment
     ```
 
-This will mount the `model_checkpoints` directory from the host system to the container, allowing checkpoint persistence.
-
-## Testing and Submission
-
-1. Once you've completed the assignment, push the code to your GitHub repository.
-2. GitHub Actions will automatically build your Docker image, run your training script, and validate whether the assignment requirements are met.
-3. Ensure all checks pass in the **GitHub Actions** tab before submitting.
-
 ## Project Structure
 
 ```
@@ -94,17 +82,3 @@ This will mount the `model_checkpoints` directory from the host system to the co
 ├── model_checkpoints/        # Directory to store model checkpoints
 └── README.md                 # This file
 ```
-
-## Notes
-
-- Keep the Docker image size below **1GB** (uncompressed).
-- Ensure that checkpoints are saved to the `model_checkpoints/` directory on the host machine.
-- Verify your Docker image locally before pushing to GitHub to ensure that everything works as expected.
-  
-Once you’ve confirmed that all requirements are met, push your code to GitHub for the automated testing and validation process.
-
-Good luck, and happy coding!
-
----
-
-This `README.md` provides a clear guide for anyone working on the assignment, covering all key aspects, including the Docker setup, training logic, and submission instructions.
