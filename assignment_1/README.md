@@ -82,3 +82,5 @@ To build and run the Docker container:
 ├── model_checkpoints/        # Directory to store model checkpoints
 └── README.md                 # This file
 ```
+
+Docker Hub Link : https://hub.docker.com/layers/nageswarsahoo/assignment_1/latest/images/sha256-d2861749317e9bfbf79d16818240a6c38075f1cb575c2b16f1af6d1869b6de39?context=repo
