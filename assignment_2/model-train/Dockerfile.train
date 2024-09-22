@@ -1,0 +1,9 @@
+FROM satyajitghana/pytorch:2.3.1
+
+WORKDIR /workspace/
+
+COPY model-train/train.py /workspace/
+COPY ./model /workspace/model
+COPY ./util /workspace/util
+
+CMD ["python3", "train.py"]
