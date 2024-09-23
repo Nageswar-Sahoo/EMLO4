@@ -7,23 +7,31 @@ from model.model import Net
 from util.utils import get_args  # Import the argument parser function
 
 checkpoint_path = '/opt/mount/model/mnist_cnn.pt'
-results_folder = '/opt/mount/model/results/'
+results_folder = '/opt/mount/results/'
 
 def infer(model, device, test_loader):
     model.eval()
     os.makedirs(results_folder, exist_ok=True)
     
     with torch.no_grad():
-        for i, (data, _) in enumerate(test_loader):
-            if i >= 5:  # Only infer 5 images
-                break
-            data = data.to(device)
-            output = model(data)
-            pred = output.argmax(dim=1, keepdim=True)
-            for idx in range(len(data)):
+     saved_preds = set()  # To keep track of saved predictions
+     for i, (data, _) in enumerate(test_loader):
+        if i >=5:  # Only infer 5 images
+            break
+        data = data.to(device)
+        output = model(data)
+        pred = output.argmax(dim=1, keepdim=True)
+        
+        for idx in range(len(data)):
+            current_pred = pred[idx].item()
+
+            # Only save the image if the prediction hasn't been saved before
+            if current_pred not in saved_preds:
+
+                # Convert and save image
                 img = data[idx].cpu().numpy().squeeze() * 255
                 img = Image.fromarray(img).convert("L")
-                img.save(os.path.join(results_folder, f'{pred[idx].item()}.png'))
+                img.save(os.path.join(results_folder, f'{i}.png'))
 
 def main():
     args = get_args()  # Get the arguments

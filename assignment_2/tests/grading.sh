@@ -16,7 +16,7 @@ echo "✅ All services have completed."
 
 # Step 2: Check if the checkpoint is saved in the volume
 echo "🔍 Checking for checkpoint file..."
-docker run --rm -v ${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox ls /opt/mount/model/mnist_cnn.pt > /dev/null 2>&1
+docker run --rm -v ./${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox ls /opt/mount/model/mnist_cnn.pt > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "✅ Checkpoint file found."
 else
@@ -26,7 +26,7 @@ fi
 
 # Step 3: Check if the eval.json output is saved in the volume
 echo "🔍 Checking for eval_results.json file..."
-docker run --rm -v ${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox ls /opt/mount/model/eval_results.json > /dev/null 2>&1
+docker run --rm -v ./${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox ls /opt/mount/model/eval_results.json > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "✅ eval_results.json file found."
 else
@@ -36,11 +36,11 @@ fi
 
 # Step 4: Print the output of eval_results.json
 echo "📄 Printing the content of eval_results.json file..."
-docker run --rm -v ${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox cat /opt/mount/model/eval_results.json
+docker run --rm -v ./${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox cat /opt/mount/model/eval_results.json
 
 # Step 5: Check if inference results are saved in the volume
 echo "🔍 Checking for inference results..."
-inference_count=$(docker run --rm -v ${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox sh -c "ls /opt/mount/results/*.png | wc -l")
+inference_count=$(docker run --rm -v ./${COMPOSE_PROJECT_NAME}_mnist:/opt/mount busybox sh -c "ls /opt/mount/results/*.png | wc -l")
 if [ "$inference_count" -eq 5 ]; then
     echo "✅ 5 inference result images found."
 else

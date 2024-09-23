@@ -7,7 +7,7 @@ from model.model import Net
 from util.utils import get_args  # Import the argument parser function
 
 checkpoint_path = '/opt/mount/model/mnist_cnn.pt'
-metrics_path = '/opt/mount/model/evaluation_metrics.json'
+metrics_path = '/opt/mount/model/eval_results.json'
 
 def evaluate(model, device, test_loader):
     model.eval()
