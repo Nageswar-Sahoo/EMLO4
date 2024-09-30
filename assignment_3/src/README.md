@@ -16,9 +16,9 @@ We are using the **Dog Breed Image Dataset** from Kaggle: [Kaggle Dataset Link](
 Docker Setup
 The project is dockerized, so all dependencies are encapsulated within the Docker container. Follow the steps below to set up and run the project.
 
-Build the Docker Image 
+    Build the Docker Image 
        docker build -t catdog-classifier .
-Train the Model
+    Train the Model
        docker run -v $(pwd)/dataset:/workspace/dataset -v $(pwd)/logs:/workspace/logs catdog-classifier
 
 
