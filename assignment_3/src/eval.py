@@ -57,6 +57,11 @@ def main(args):
                    './dataset/Beagle/Beagle_2.jpg',
                    './dataset/Yorkshire_Terrier/Yorkshire Terrier_1.jpg',
                    './dataset/Beagle/Beagle_1.jpg',
+                    './dataset/Beagle/Beagle_3.jpg',
+                    './dataset/Yorkshire_Terrier/Yorkshire Terrier_3.jpg',
+                   './dataset/Beagle/Beagle_4.jpg',
+                   './dataset/Yorkshire_Terrier/Yorkshire Terrier_4.jpg',
+                   './dataset/Beagle/Beagle_5.jpg',
                    ]
     with get_rich_progress() as progress:
         task = progress.add_task("[green]Processing images...", total=len(image_files))

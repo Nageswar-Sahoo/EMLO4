@@ -24,14 +24,14 @@ def main():
     setup_logger(log_dir / "train_log.log")
 
     # Initialize DataModule
-    data_module = CatDogImageDataModule(dl_path=data_dir, batch_size=32, num_workers=0)
+    data_module = CatDogImageDataModule(dl_path='./dataset', batch_size=32, num_workers=0)
 
     # Initialize Model
     model = CatDogClassifier(lr=1e-3)
 
     # Set up checkpoint callback
     checkpoint_callback = ModelCheckpoint(
-        dirpath=log_dir / "catdog_classification" / "checkpoints",
+        dirpath="./ckp",
         filename="epoch={epoch:02d}-val_loss={val_loss:.2f}",
         save_top_k=3,
         monitor="val_loss",
@@ -52,6 +52,9 @@ def main():
 
     # Train and test the model
     train_and_test(data_module, model, trainer)
+    
+    best_checkpoint_path = checkpoint_callback.best_model_path
+    print(f"Best model checkpoint saved at: {best_checkpoint_path}")
 
 if __name__ == "__main__":
     main()

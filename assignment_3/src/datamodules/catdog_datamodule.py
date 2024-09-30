@@ -19,7 +19,6 @@ class CatDogImageDataModule(L.LightningDataModule):
 
     def prepare_data(self):
         # Google Drive file ID (from the shareable link)
-        file_id = 'your_file_id'  # Replace this with your actual file ID
 
         # URL to download the file
         download_url = f"https://drive.google.com/uc?id=1X96sA534xC5_Yh37jhYSKVQ0PFtJLNNn"
@@ -41,7 +40,7 @@ class CatDogImageDataModule(L.LightningDataModule):
 
     @property
     def data_path(self):
-        return Path(self._dl_path).joinpath("cats_and_dogs_filtered")
+        return Path(self._dl_path)
 
     @property
     def normalize_transform(self):
@@ -70,9 +69,9 @@ class CatDogImageDataModule(L.LightningDataModule):
     def __dataloader(self, train: bool):
         """Train/validation/test loaders."""
         if train:
-            dataset = self.create_dataset(self.data_path.joinpath("train"), self.train_transform)
+            dataset = self.create_dataset(self.data_path, self.train_transform)
         else:
-            dataset = self.create_dataset(self.data_path.joinpath("validation"), self.valid_transform)
+            dataset = self.create_dataset(self.data_path, self.valid_transform)
         return DataLoader(dataset=dataset, batch_size=self._batch_size, num_workers=self._num_workers, shuffle=train)
 
     def train_dataloader(self):
